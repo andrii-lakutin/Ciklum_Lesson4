@@ -1,0 +1,9 @@
+@import 'variables.scss';
+
+header{
+	height: 60px;
+	width: 100%;
+	color: $header-text;
+	background-color: $header;
+	line-height: 60px;  
+}

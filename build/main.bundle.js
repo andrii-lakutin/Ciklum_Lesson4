@@ -1655,9 +1655,10 @@
 	
 		var movie = document.createElement('div');
 		movie.className = "movie";
-		movie.innerHTML = '<div class="poster" style="background: url(' + (image == "N/A" ? "../src/images/404.png" : json.Poster) + ') 50% 50% no-repeat; background-size: cover;">\n\t\t\t\t\t\t   \t\t<div class= "shadow">' + json.Title + '</div>\n\t\t\t\t\t\t   </div>\n\t\t\t\t\t\t   <div class="description">' + json.Plot + '</div>\n\t\t\t\t\t\t   <div class="social">\n\t\t\t\t\t\t   \t\t<p>' + json.Year + '</p>\n\t\t\t\t\t\t   \t\t<p>' + json.Runtime + '</p>\n\t\t\t\t\t\t   \t\t<p>IMDB: ' + json.imdbRating + '</p>\n\t\t\t\t\t\t   \t\t<p><i class="fa fa-star" aria-hidden="true"></i></p>\n\t\t\t\t\t\t   </div>';
-	
-		MOVIES_PLACE_IN_DOM.appendChild(movie);
+		movie.innerHTML = '<div class="poster" style="background: url(' + (image == "N/A" ? "../src/images/404.png" : json.Poster) + ') 50% 50% no-repeat; background-size: cover;">\n\t\t\t\t\t\t   \t\t<div class= "shadow">' + json.Title + '</div>\n\t\t\t\t\t\t   </div>\n\t\t\t\t\t\t   <div class="description">' + json.Plot + '</div>\n\t\t\t\t\t\t   <div class="social">\n\t\t\t\t\t\t   \t\t<p>' + json.Year + '</p>\n\t\t\t\t\t\t   \t\t<p>' + json.Runtime + '</p>\n\t\t\t\t\t\t   \t\t<p>IMDB: ' + json.imdbRating + '</p>\n\t\t\t\t\t\t   \t\t<p class="star"><i class="fa fa-star" aria-hidden="true"></i></p>\n\t\t\t\t\t\t   </div>';
+		if (json.Response != 'False') {
+			MOVIES_PLACE_IN_DOM.appendChild(movie);
+		}
 	};
 
 /***/ }

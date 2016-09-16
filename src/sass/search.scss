@@ -12,15 +12,16 @@
 	.search{
 		min-width: 90%;
 		display: flex;
+		box-shadow: $search-shadow;
 		input{
 			border: 0;
 			padding: 9px;
-			flex: 6 1 auto;
+			flex: 6 1 auto; 
 			&:focus{
 				outline: none;
 			}
 			&::placeholder{ 
-				color: $search-btn;
+				color: $search-placeholder;
 				text-indent: 5px;
 				transition: text-indent 500ms cubic-bezier(.87,-.41,.19,1.441);
 			}
@@ -34,7 +35,7 @@
 			flex: 1 1 100px;
 			background: $search-btn;
 			color: $search-btn-text; 
-			cursor: pointer;
+			cursor: pointer; 
 		}
 	}   
 }

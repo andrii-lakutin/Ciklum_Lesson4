@@ -16,8 +16,9 @@ export function moviesFactory(json){
 						   		<p>${json.Year}</p>
 						   		<p>${json.Runtime}</p>
 						   		<p>IMDB: ${json.imdbRating}</p>
-						   		<p><i class="fa fa-star" aria-hidden="true"></i></p>
+						   		<p class="star"><i class="fa fa-star" aria-hidden="true"></i></p>
 						   </div>`;
-
-	MOVIES_PLACE_IN_DOM.appendChild(movie);
+	if (json.Response != 'False') {
+		MOVIES_PLACE_IN_DOM.appendChild(movie);	
+	} 
 };

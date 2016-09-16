@@ -6,4 +6,23 @@ header{
 	color: $header-text;
 	background-color: $header;
 	line-height: 60px;  
+	ul{
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		li{
+			flex: 0 1 160px;
+			text-align: center;
+			background-color: $header; 
+			transition: all 200ms;
+			cursor: pointer;
+			&:hover{
+				color: $header-text-hover;
+			}
+			@media screen and (max-width: 500px){
+				flex: 1 1 100%;
+				border-bottom: 1px solid white; 
+			}
+		}
+	}
 }

@@ -142,5 +142,39 @@ header {
   line-height: 60px;
 }
 
+header ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+header ul li {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 160px;
+          flex: 0 1 160px;
+  text-align: center;
+  background-color: #8ABF51;
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
+  cursor: pointer;
+}
+
+header ul li:hover {
+  color: #212121;
+}
+
+@media screen and (max-width: 500px) {
+  header ul li {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+    border-bottom: 1px solid white;
+  }
+}
+
 
 /*# sourceMappingURL=styles.css.map*/

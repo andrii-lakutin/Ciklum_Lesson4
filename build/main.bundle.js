@@ -57,6 +57,10 @@
 	var _header = __webpack_require__(7);
 	
 	var _header2 = _interopRequireDefault(_header);
+	
+	var _search = __webpack_require__(9);
+	
+	var _search2 = _interopRequireDefault(_search);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -78,6 +82,13 @@
 /***/ },
 /* 6 */,
 /* 7 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 8 */,
+/* 9 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

@@ -21,7 +21,7 @@ header{
 			}
 			@media screen and (max-width: 500px){
 				flex: 1 1 100%;
-				border-bottom: 1px solid white; 
+				border-bottom: 1px solid $header-text; 
 			}
 		}
 	}

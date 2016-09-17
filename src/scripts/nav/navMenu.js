@@ -5,7 +5,8 @@ var DOM ={
 	delAll        : document.querySelector('.delAll'),
 	onlyFav       : document.querySelector('.onlyFav'),
 	navSearch     : document.querySelector('.navSearch'),
-	searchSection : document.querySelector('.searchSection')
+	searchSection : document.querySelector('.searchSection'),
+	movSection    : document.querySelector('.moviesSection')
 }
 
 
@@ -21,4 +22,5 @@ DOM.onlyFav.addEventListener('click', ()=>{
 
 DOM.navSearch.addEventListener('click', ()=>{
 	DOM.searchSection.classList.toggle('show-search-js');
+	DOM.movSection.classList.toggle('padding-if-search-hidden-js');
 });

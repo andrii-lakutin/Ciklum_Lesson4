@@ -14,20 +14,9 @@
 		display: flex;
 		box-shadow: $search-shadow;
 		input{
-			border: 0;
 			padding: 9px;
 			flex: 6 1 auto; 
-			&:focus{
-				outline: none;
-			}
-			&::placeholder{ 
-				color: $search-placeholder;
-				text-indent: 5px;
-				transition: text-indent 500ms cubic-bezier(.87,-.41,.19,1.441);
-			}
-			&:focus::placeholder{
-				text-indent: -300px;
-			}
+			@include inputs();
 		}
 		.button{
 			text-align: center;

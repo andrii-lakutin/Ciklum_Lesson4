@@ -62,6 +62,10 @@
 	
 	var _search2 = _interopRequireDefault(_search);
 	
+	var _filters = __webpack_require__(92);
+	
+	var _filters2 = _interopRequireDefault(_filters);
+	
 	var _movies = __webpack_require__(11);
 	
 	var _movies2 = _interopRequireDefault(_movies);
@@ -85,6 +89,10 @@
 	var _navMenu = __webpack_require__(87);
 	
 	var _navMenu2 = _interopRequireDefault(_navMenu);
+	
+	var _filters3 = __webpack_require__(94);
+	
+	var _filters4 = _interopRequireDefault(_filters3);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -141,13 +149,23 @@
 	};
 	
 	DOM.btn.addEventListener('click', function () {
+		search();
+	});
+	
+	DOM.input.addEventListener('keydown', function (e) {
+		if (e.keyCode == 13) {
+			search();
+		}
+	});
+	
+	function search() {
 		(0, _getData.httpGet)('http://www.omdbapi.com/?s=' + DOM.input.value + '&y=&plot=full&r=json').then(function (response) {
 			console.log(JSON.parse(response));
 			(0, _moviesFactory.moviesFactory)(JSON.parse(response));
 		}, function (error) {
 			return console.log('Rejected: ' + error);
 		});
-	});
+	};
 
 /***/ },
 /* 14 */,
@@ -1662,7 +1680,8 @@
 		delAll: document.querySelector('.delAll'),
 		onlyFav: document.querySelector('.onlyFav'),
 		navSearch: document.querySelector('.navSearch'),
-		searchSection: document.querySelector('.searchSection')
+		searchSection: document.querySelector('.searchSection'),
+		movSection: document.querySelector('.moviesSection')
 	};
 	
 	DOM.delAll.addEventListener('click', function () {
@@ -1677,6 +1696,7 @@
 	
 	DOM.navSearch.addEventListener('click', function () {
 		DOM.searchSection.classList.toggle('show-search-js');
+		DOM.movSection.classList.toggle('padding-if-search-hidden-js');
 	});
 
 /***/ },
@@ -1791,6 +1811,36 @@
 			MOVIES_PLACE_IN_DOM.removeChild(MOVIES_PLACE_IN_DOM.firstChild);
 		}
 	}
+
+/***/ },
+/* 92 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 93 */,
+/* 94 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _getFromStorage = __webpack_require__(89);
+	
+	var _clearMovies = __webpack_require__(91);
+	
+	var _moviesFactory = __webpack_require__(80);
+	
+	var _getData = __webpack_require__(90);
+	
+	var DOM = {
+		ser: document.querySelector('ser'),
+		mov: document.querySelector('mov'),
+		serCheckbox: document.getElementById('ser'),
+		movCheckbox: document.getElementById('mov'),
+		year: document.getElementById('year'),
+		pages: document.querySelector('.pages')
+	};
 
 /***/ }
 /******/ ]);

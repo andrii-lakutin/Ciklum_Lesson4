@@ -14,6 +14,10 @@ $input-text: #8ABF51;
 $search-placeholder: #757575;
 $search-shadow: 2px 5px 5px 1px rgba(0,0,0,0.20);
 
+//FILTERS
+$btn-gradient: linear-gradient(to bottom left, #5B206E 20%, #507FCD 100%);
+$btn-shadow: 1px 1px 1px 1px rgba(0,0,0,0.20);
+
 // MOVIES
 $shadow: rgba(black, 0.6);
 $title-color: white;
@@ -31,3 +35,21 @@ $star-color: #FFFF00;
 // FONTS
 $main-font: 'Roboto',sans-serif;
 $global-font-size: 16px;
+
+
+//MIX
+
+@mixin inputs() {
+	border: 0;
+	&:focus{
+		outline: none;
+	}
+	&::placeholder{ 
+		color: $search-placeholder;
+		text-indent: 5px;
+		transition: text-indent 500ms cubic-bezier(.87,-.41,.19,1.441);
+	}
+	&:focus::placeholder{
+		text-indent: -300px;
+	}
+}

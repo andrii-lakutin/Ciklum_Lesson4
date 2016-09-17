@@ -7,13 +7,22 @@ var DOM = {
 }    
 
 DOM.btn.addEventListener('click', () => {
-	httpGet(`http://www.omdbapi.com/?s=${DOM.input.value}&y=&plot=full&r=json`)
-		.then(
-			response => {
-				console.log(JSON.parse(response));
-				moviesFactory(JSON.parse(response));
-			},
-			error => console.log(`Rejected: ${error}`)
-			);
+	search();
 });
 
+DOM.input.addEventListener('keydown', (e)=>{
+	if (e.keyCode == 13) {
+		search();
+	}
+});
+
+function search(){
+	httpGet(`http://www.omdbapi.com/?s=${DOM.input.value}&y=&plot=full&r=json`)
+	.then(
+		response => {
+			console.log(JSON.parse(response));
+			moviesFactory(JSON.parse(response));
+		},
+		error => console.log(`Rejected: ${error}`)
+		);
+};

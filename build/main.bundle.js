@@ -89,10 +89,6 @@
 	var _navMenu = __webpack_require__(87);
 	
 	var _navMenu2 = _interopRequireDefault(_navMenu);
-	
-	var _filters3 = __webpack_require__(94);
-	
-	var _filters4 = _interopRequireDefault(_filters3);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -139,32 +135,91 @@
 
 	'use strict';
 	
-	var _getData = __webpack_require__(90);
+	var _getFromStorage = __webpack_require__(89);
+	
+	var _clearMovies = __webpack_require__(91);
 	
 	var _moviesFactory = __webpack_require__(80);
 	
+	var _getData = __webpack_require__(90);
+	
 	var DOM = {
-		input: document.querySelector('.search input'),
-		btn: document.getElementById('search')
+	  input: document.querySelector('.search input'),
+	  btn: document.getElementById('search'),
+	  type: document.querySelector('.type'),
+	  year: document.getElementById('year'),
+	  pages: document.querySelector('.pages')
 	};
 	
+	function refreshData() {
+	  var page = arguments.length <= 0 || arguments[0] === undefined ? "" : arguments[0];
+	
+	  (0, _clearMovies.clearMovies)();
+	  (0, _getFromStorage.renderFavorite)();
+	  search('http://www.omdbapi.com/?s=' + DOM.input.value + '&y=' + DOM.year.value + '&type=' + DOM.type.value + '&plot=full&r=json&page=' + page);
+	};
+	
+	//Search button
 	DOM.btn.addEventListener('click', function () {
-		search();
+	  refreshData();
 	});
 	
+	//Enter button
 	DOM.input.addEventListener('keydown', function (e) {
-		if (e.keyCode == 13) {
-			search();
-		}
+	  if (e.keyCode == 13) {
+	    refreshData();
+	  }
 	});
 	
-	function search() {
-		(0, _getData.httpGet)('http://www.omdbapi.com/?s=' + DOM.input.value + '&y=&plot=full&r=json').then(function (response) {
-			console.log(JSON.parse(response));
-			(0, _moviesFactory.moviesFactory)(JSON.parse(response));
-		}, function (error) {
-			return console.log('Rejected: ' + error);
-		});
+	//Select on change
+	DOM.type.addEventListener('change', function () {
+	  refreshData();
+	});
+	
+	// DELEGATION
+	DOM.pages.addEventListener('click', function (e) {
+	  var target = e.target;
+	  if (target.classList.value != 'page') return;
+	  switch (target.innerHTML) {
+	    case '1':
+	      refreshData(target.innerHTML);
+	      break;
+	    case '2':
+	      refreshData(target.innerHTML);
+	      break;
+	    case '3':
+	      refreshData(target.innerHTML);
+	      break;
+	    case '4':
+	      refreshData(target.innerHTML);
+	      break;
+	    case '5':
+	      refreshData(target.innerHTML);
+	      break;
+	    case '6':
+	      refreshData(target.innerHTML);
+	      break;
+	    case '7':
+	      refreshData(target.innerHTML);
+	      break;
+	    case '8':
+	      refreshData(target.innerHTML);
+	      break;
+	    case '9':
+	      refreshData(target.innerHTML);
+	      break;
+	    default:
+	      break;
+	  }
+	});
+	
+	function search(url) {
+	  (0, _getData.httpGet)(url).then(function (response) {
+	    console.log(JSON.parse(response));
+	    (0, _moviesFactory.moviesFactory)(JSON.parse(response));
+	  }, function (error) {
+	    return console.log('Rejected: ' + error);
+	  });
 	};
 
 /***/ },
@@ -1681,7 +1736,8 @@
 		onlyFav: document.querySelector('.onlyFav'),
 		navSearch: document.querySelector('.navSearch'),
 		searchSection: document.querySelector('.searchSection'),
-		movSection: document.querySelector('.moviesSection')
+		movSection: document.querySelector('.moviesSection'),
+		filSection: document.querySelector('.filtersSection')
 	};
 	
 	DOM.delAll.addEventListener('click', function () {
@@ -1695,7 +1751,8 @@
 	});
 	
 	DOM.navSearch.addEventListener('click', function () {
-		DOM.searchSection.classList.toggle('show-search-js');
+		DOM.searchSection.classList.toggle('hide-search-js');
+		DOM.filSection.classList.toggle('hide-search-js');
 		DOM.movSection.classList.toggle('padding-if-search-hidden-js');
 	});
 
@@ -1706,7 +1763,7 @@
 	'use strict';
 	
 	var allMoviesOnPage = document.querySelector('.moviesSection');
-	
+	// DELEGATION
 	allMoviesOnPage.addEventListener('click', function (e) {
 	
 		var target = e.target;
@@ -1769,7 +1826,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function httpGet(url) {
-	
 	  return new _promise2.default(function (resolve, reject) {
 	
 	    var xhr = new XMLHttpRequest();
@@ -1817,30 +1873,6 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 93 */,
-/* 94 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _getFromStorage = __webpack_require__(89);
-	
-	var _clearMovies = __webpack_require__(91);
-	
-	var _moviesFactory = __webpack_require__(80);
-	
-	var _getData = __webpack_require__(90);
-	
-	var DOM = {
-		ser: document.querySelector('ser'),
-		mov: document.querySelector('mov'),
-		serCheckbox: document.getElementById('ser'),
-		movCheckbox: document.getElementById('mov'),
-		year: document.getElementById('year'),
-		pages: document.querySelector('.pages')
-	};
 
 /***/ }
 /******/ ]);

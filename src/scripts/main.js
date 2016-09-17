@@ -11,4 +11,3 @@ import searchJS       from "./search"                  ;
 import saveToStorage  from "./data/saveToStorage"      ; 
 import getFromStorage from "./data/getFromStorage.js"  ;
 import navMenu        from "./nav/navMenu.js"          ;
-import filter         from "./filters.js"              ;

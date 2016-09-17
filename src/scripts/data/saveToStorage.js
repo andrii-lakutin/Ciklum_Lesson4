@@ -1,6 +1,6 @@
 
 var allMoviesOnPage = document.querySelector('.moviesSection');
-
+// DELEGATION
 allMoviesOnPage.addEventListener('click', (e) =>{
 
 	var target = e.target;

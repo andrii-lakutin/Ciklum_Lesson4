@@ -6,7 +6,8 @@ var DOM ={
 	onlyFav       : document.querySelector('.onlyFav'),
 	navSearch     : document.querySelector('.navSearch'),
 	searchSection : document.querySelector('.searchSection'),
-	movSection    : document.querySelector('.moviesSection')
+	movSection    : document.querySelector('.moviesSection'),
+	filSection    : document.querySelector('.filtersSection')
 }
 
 
@@ -21,6 +22,7 @@ DOM.onlyFav.addEventListener('click', ()=>{
 });
 
 DOM.navSearch.addEventListener('click', ()=>{
-	DOM.searchSection.classList.toggle('show-search-js');
+	DOM.searchSection.classList.toggle('hide-search-js');
+	DOM.filSection.classList.toggle('hide-search-js');
 	DOM.movSection.classList.toggle('padding-if-search-hidden-js');
 });

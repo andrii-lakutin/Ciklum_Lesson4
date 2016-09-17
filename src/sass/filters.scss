@@ -6,19 +6,39 @@
 	display: flex; 
 	flex-wrap: wrap;
 	justify-content: space-around;
-	.check{
+	.type{
 		max-width: 100px; 
 		height: 30px;
-		line-height: 30px;
 	}
-	label{
+	select{
+		color: $search-placeholder;
+		padding: 5px; 
+		border: 0;
+		box-shadow: $btn-shadow;
 		cursor: pointer;
+		outline: none;
+		background: $select;
+		color: $select-text;
+		border-radius: 3px; 
+		font-weight: 600; 
+		option{
+			color: $select-text;
+			font-weight: 600; 
+			background: $select; 
+		}
 	}
 	input[type="text"]{
 		@include inputs(); 
-		padding: 5px;
-		width: 50px; 
+		padding: 6px;
+		width: 50px;  
 		box-shadow: $btn-shadow;  
+		font-weight: 600; 
+		color: $select-text;
+		background: $select;
+		border-radius: 3px; 
+		&::placeholder{
+			color: $select-text;
+		}
 	}  
 	.pages{
 		flex: 1 1 100%;

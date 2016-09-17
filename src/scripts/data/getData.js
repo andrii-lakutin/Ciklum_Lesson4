@@ -1,5 +1,4 @@
 export function httpGet(url) {
-
   return new Promise(function(resolve, reject) {
 
     var xhr = new XMLHttpRequest();

@@ -289,21 +289,39 @@ header ul li:hover {
       justify-content: space-around;
 }
 
-.filtersSection .check {
+.filtersSection .type {
   max-width: 100px;
   height: 30px;
-  line-height: 30px;
 }
 
-.filtersSection label {
+.filtersSection select {
+  color: #757575;
+  padding: 5px;
+  border: 0;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
   cursor: pointer;
+  outline: none;
+  background: #5B206E;
+  color: #FFFFFF;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.filtersSection select option {
+  color: #FFFFFF;
+  font-weight: 600;
+  background: #5B206E;
 }
 
 .filtersSection input[type="text"] {
   border: 0;
-  padding: 5px;
+  padding: 6px;
   width: 50px;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+  font-weight: 600;
+  color: #FFFFFF;
+  background: #5B206E;
+  border-radius: 3px;
 }
 
 .filtersSection input[type="text"]:focus {
@@ -354,6 +372,22 @@ header ul li:hover {
   text-indent: -300px;
 }
 
+.filtersSection input[type="text"]::-webkit-input-placeholder {
+  color: #FFFFFF;
+}
+
+.filtersSection input[type="text"]::-moz-placeholder {
+  color: #FFFFFF;
+}
+
+.filtersSection input[type="text"]:-ms-input-placeholder {
+  color: #FFFFFF;
+}
+
+.filtersSection input[type="text"]::placeholder {
+  color: #FFFFFF;
+}
+
 .filtersSection .pages {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 100%;
@@ -379,12 +413,11 @@ header ul li:hover {
   text-align: center;
   margin: 5px;
   border-radius: 2px;
-  background: -webkit-linear-gradient(top right, #5B206E 20%, #507FCD 100%);
-  background: linear-gradient(to bottom left, #5B206E 20%, #507FCD 100%);
+  background: #5B206E;
   color: white;
   cursor: pointer;
   font-weight: 600;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
 }
 
 .moviesSection {
@@ -526,7 +559,7 @@ header ul li:hover {
           animation-fill-mode: forwards;
 }
 
-.show-search-js {
+.hide-search-js {
   display: none !important;
 }
 

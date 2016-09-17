@@ -66,9 +66,25 @@
 	
 	var _movies2 = _interopRequireDefault(_movies);
 	
+	var _jsStyles = __webpack_require__(82);
+	
+	var _jsStyles2 = _interopRequireDefault(_jsStyles);
+	
 	var _search3 = __webpack_require__(13);
 	
 	var _search4 = _interopRequireDefault(_search3);
+	
+	var _saveToStorage = __webpack_require__(88);
+	
+	var _saveToStorage2 = _interopRequireDefault(_saveToStorage);
+	
+	var _getFromStorage = __webpack_require__(89);
+	
+	var _getFromStorage2 = _interopRequireDefault(_getFromStorage);
+	
+	var _navMenu = __webpack_require__(87);
+	
+	var _navMenu2 = _interopRequireDefault(_navMenu);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -115,7 +131,7 @@
 
 	'use strict';
 	
-	var _getData = __webpack_require__(14);
+	var _getData = __webpack_require__(90);
 	
 	var _moviesFactory = __webpack_require__(80);
 	
@@ -125,7 +141,7 @@
 	};
 	
 	DOM.btn.addEventListener('click', function () {
-		(0, _getData.httpGet)('http://www.omdbapi.com/?t=' + DOM.input.value + '&y=&plot=full&r=json').then(function (response) {
+		(0, _getData.httpGet)('http://www.omdbapi.com/?s=' + DOM.input.value + '&y=&plot=full&r=json').then(function (response) {
 			console.log(JSON.parse(response));
 			(0, _moviesFactory.moviesFactory)(JSON.parse(response));
 		}, function (error) {
@@ -134,50 +150,7 @@
 	});
 
 /***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _promise = __webpack_require__(15);
-	
-	var _promise2 = _interopRequireDefault(_promise);
-	
-	exports.httpGet = httpGet;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function httpGet(url) {
-	
-	  return new _promise2.default(function (resolve, reject) {
-	
-	    var xhr = new XMLHttpRequest();
-	    xhr.open('GET', url, true);
-	
-	    xhr.onload = function () {
-	      if (this.status == 200) {
-	        resolve(this.response);
-	        // console.log(JSON.parse(this.response));
-	      } else {
-	        var error = new Error(this.statusText);
-	        error.code = this.status;
-	        reject(error);
-	      }
-	    };
-	
-	    xhr.onerror = function () {
-	      reject(new Error("Network Error"));
-	    };
-	
-	    xhr.send();
-	  });
-	};
-
-/***/ },
+/* 14 */,
 /* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1645,21 +1618,179 @@
 	});
 	exports.moviesFactory = moviesFactory;
 	
-	var _getData = __webpack_require__(14);
+	var _getData = __webpack_require__(90);
 	
 	function moviesFactory(json) {
 	
 		var MOVIES_PLACE_IN_DOM = document.querySelector('.moviesSection .nonFavorites');
 	
-		var image = json.Poster;
+		json.Search.forEach(function (item, i, arr) {
+			var image = item.Poster;
 	
-		var movie = document.createElement('div');
-		movie.className = "movie";
-		movie.innerHTML = '<div class="poster" style="background: url(' + (image == "N/A" ? "../src/images/404.png" : json.Poster) + ') 50% 50% no-repeat; background-size: cover;">\n\t\t\t\t\t\t   \t\t<div class= "shadow">' + json.Title + '</div>\n\t\t\t\t\t\t   </div>\n\t\t\t\t\t\t   <div class="description">' + json.Plot + '</div>\n\t\t\t\t\t\t   <div class="social">\n\t\t\t\t\t\t   \t\t<p>' + json.Year + '</p>\n\t\t\t\t\t\t   \t\t<p>' + json.Runtime + '</p>\n\t\t\t\t\t\t   \t\t<p>IMDB: ' + json.imdbRating + '</p>\n\t\t\t\t\t\t   \t\t<p class="star"><i class="fa fa-star" aria-hidden="true"></i></p>\n\t\t\t\t\t\t   </div>';
-		if (json.Response != 'False') {
+			var movie = document.createElement('div');
+			movie.className = "movie";
+			movie.innerHTML = '<div class="poster" style="background: url(' + (image == "N/A" ? "../src/images/404.png" : image) + ') 50% 50% no-repeat; background-size: cover;">\n\t\t\t\t\t\t\t   \t\t<div class= "shadow">' + item.Title + '</div>\n\t\t\t\t\t\t\t   </div>\n\t\t\t\t\t\t\t   <div class="social">\n\t\t\t\t\t\t\t   \t\t<p>' + item.Year + '</p>\n\t\t\t\t\t\t\t   \t\t<p>' + item.Type + '</p>\n\t\t\t\t\t\t\t   \t\t<p class="star"><i class="fa fa-star js-star" aria-hidden="true"></i></p>\n\t\t\t\t\t\t\t   </div>';
+			//убираем повторения избранных
+			if (localStorage.getItem('' + item.Title) === null) {
+				MOVIES_PLACE_IN_DOM.appendChild(movie);
+			}
+		});
+	};
+
+/***/ },
+/* 81 */,
+/* 82 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _getFromStorage = __webpack_require__(89);
+	
+	var _clearMovies = __webpack_require__(91);
+	
+	var DOM = {
+		delAll: document.querySelector('.delAll'),
+		onlyFav: document.querySelector('.onlyFav'),
+		navSearch: document.querySelector('.navSearch'),
+		searchSection: document.querySelector('.searchSection')
+	};
+	
+	DOM.delAll.addEventListener('click', function () {
+		localStorage.clear();
+		(0, _clearMovies.clearMovies)();
+	});
+	
+	DOM.onlyFav.addEventListener('click', function () {
+		(0, _clearMovies.clearMovies)();
+		(0, _getFromStorage.renderFavorite)();
+	});
+	
+	DOM.navSearch.addEventListener('click', function () {
+		DOM.searchSection.classList.toggle('show-search-js');
+	});
+
+/***/ },
+/* 88 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var allMoviesOnPage = document.querySelector('.moviesSection');
+	
+	allMoviesOnPage.addEventListener('click', function (e) {
+	
+		var target = e.target;
+	
+		if (target.classList.value.indexOf('js-star') === -1) return;
+		target.classList.toggle('star-shine-js');
+	
+		var movie = target.parentNode.parentNode.parentNode;
+		var title = movie.children[0].children[0].innerHTML;
+	
+		if (localStorage.getItem('' + title) != null) {
+			localStorage.removeItem('' + title);
+		} else {
+			localStorage.setItem('' + title, movie.innerHTML);
+		}
+	});
+
+/***/ },
+/* 89 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.renderFavorite = renderFavorite;
+	
+	document.addEventListener("DOMContentLoaded", function (event) {
+		renderFavorite();
+	});
+	
+	function renderFavorite() {
+		var MOVIES_PLACE_IN_DOM = document.querySelector('.moviesSection .nonFavorites');
+	
+		for (var key in localStorage) {
+			var movie = document.createElement('div');
+			movie.className = "movie";
+			movie.innerHTML = localStorage[key];
 			MOVIES_PLACE_IN_DOM.appendChild(movie);
 		}
+	}
+
+/***/ },
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _promise = __webpack_require__(15);
+	
+	var _promise2 = _interopRequireDefault(_promise);
+	
+	exports.httpGet = httpGet;
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function httpGet(url) {
+	
+	  return new _promise2.default(function (resolve, reject) {
+	
+	    var xhr = new XMLHttpRequest();
+	    xhr.open('GET', url, true);
+	
+	    xhr.onload = function () {
+	      if (this.status == 200) {
+	        resolve(this.response);
+	        // console.log(JSON.parse(this.response));
+	      } else {
+	        var error = new Error(this.statusText);
+	        error.code = this.status;
+	        reject(error);
+	      }
+	    };
+	
+	    xhr.onerror = function () {
+	      reject(new Error("Network Error"));
+	    };
+	
+	    xhr.send();
+	  });
 	};
+
+/***/ },
+/* 91 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.clearMovies = clearMovies;
+	function clearMovies() {
+		var MOVIES_PLACE_IN_DOM = document.querySelector('.moviesSection .nonFavorites');
+	
+		while (MOVIES_PLACE_IN_DOM.firstChild) {
+			MOVIES_PLACE_IN_DOM.removeChild(MOVIES_PLACE_IN_DOM.firstChild);
+		}
+	}
 
 /***/ }
 /******/ ]);

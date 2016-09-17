@@ -1,13 +1,13 @@
-import {httpGet} from'./getData';
+import {httpGet} from'./data/getData';
 import {moviesFactory} from'./moviesFactory';
 
 var DOM = {
-	input: document.querySelector('.search input'),
-	btn  : document.getElementById('search')
-}
+	input         : document.querySelector('.search input'),
+	btn           : document.getElementById('search')	
+}    
 
 DOM.btn.addEventListener('click', () => {
-	httpGet(`http://www.omdbapi.com/?t=${DOM.input.value}&y=&plot=full&r=json`)
+	httpGet(`http://www.omdbapi.com/?s=${DOM.input.value}&y=&plot=full&r=json`)
 		.then(
 			response => {
 				console.log(JSON.parse(response));
@@ -16,3 +16,4 @@ DOM.btn.addEventListener('click', () => {
 			error => console.log(`Rejected: ${error}`)
 			);
 });
+

@@ -298,7 +298,7 @@ header ul li:hover {
 }
 
 .moviesSection .movie .poster {
-  height: 250px;
+  height: 370px;
   width: 100%;
   background-size: cover;
   display: table;
@@ -309,7 +309,7 @@ header ul li:hover {
   height: 100%;
   display: table-cell;
   vertical-align: middle;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.6);
   font-size: 30px;
   color: white;
   text-align: center;
@@ -352,7 +352,7 @@ header ul li:hover {
   position: absolute;
   text-align: center;
   right: -4px;
-  top: -10px;
+  top: -11px;
   width: 50px;
   height: 50px;
   font-size: 22px;
@@ -378,6 +378,46 @@ header ul li:hover {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   width: 100%;
+}
+
+@-webkit-keyframes star {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    font-size: 0px;
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    font-size: 22px;
+  }
+}
+
+@keyframes star {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    font-size: 0px;
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    font-size: 22px;
+  }
+}
+
+.star-shine-js {
+  color: #FFFF00 !important;
+  -webkit-animation: star 500ms;
+          animation: star 500ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.show-search-js {
+  display: none !important;
 }
 
 
